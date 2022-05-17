@@ -1,0 +1,54 @@
+
+<div id="container">
+
+    <form #f="ngForm" id="articleForm">
+        <div class="row">
+          <div class="col">
+            <label for="title">Title</label>
+            <input type="text" name="title" [(ngModel)]= "selectedArticle.title" id="title" class="form-control">
+          </div>
+          <div class="col">
+            <label for="descritpion">description</label>
+            <input type="text" id="description" name="description" [(ngModel)]= "selectedArticle.description" class="form-control">
+          </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-check my-3">
+                <input class="form-check-input ml-0" name="published" [(ngModel)]= "selectedArticle.published" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    Publier l'article
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <button id="saveBtn" type="button" (click)="createOrUpdateArticle(f)" class="btn btn-success mb-2">Enregistree l'article</button>
+        </div> 
+      </form>
+
+      <p class="mt-5">List des articles </p>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Publié</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let article of articles">
+                <td>{{ article.title }}</td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.published == true ? 'Oui' : 'Non'  }}</td>
+                <td class="action">
+                  <button class="btn btn-primary" id="updateBtn" (click)="selectArticle(article)"></button>
+                  <button class="btn btn-danger" id="deleteBtn" (click)="deleteArticle(article.id)"></button>
+                </td>
+              </tr>
+        </tbody>
+      </table>
+</div>
+
+  
